@@ -10,6 +10,7 @@ def process_transcript(user_id: str, transcript: str):
         
         # This is a simplified version - replace with actual empathy processing logic
         # In a real implementation, this would call the core empathy processing
+        ## Call to LLM is required here. Prompt should be more complicated as we are not just trying to classify into categories. We are trying to show a deeper insight by formulating a takeaway.
         
         result = {
             'userId': user_id,

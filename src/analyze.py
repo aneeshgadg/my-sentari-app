@@ -13,6 +13,8 @@ def classify_mini_tags(transcript: str):
     try:
         openai.api_key = os.getenv('OPENAI_API_KEY')
         
+        ##Should we try a different approach for the 3 tags? Should we use more, i.e. 3 tags per classification, so 9 total?
+        ##Also do we need to define confidence better? Do we need a feedback system that says if it is below 0.8 then it should be run again?
         prompt = f"""
         Analyze this transcript and classify it into exactly 3 tags:
         1. Purpose (why they're speaking): reflection, planning, venting, sharing, question, goal-setting
@@ -20,6 +22,7 @@ def classify_mini_tags(transcript: str):
         3. Category (topic area): work, personal, health, relationships, goals, daily-life, learning, creative
         
         Transcript: "{transcript}"
+        
         
         Respond in JSON format:
         {{
@@ -30,6 +33,7 @@ def classify_mini_tags(transcript: str):
         }}
         """
         
+        ## Is temperature something we should tune depending on the type of user? Some users are more logical, whereas others are more emotional...
         response = openai.chat.completions.create(
             model=OPENAI_CHAT_MODEL,
             messages=[{"role": "user", "content": prompt}],

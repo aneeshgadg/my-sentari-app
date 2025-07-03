@@ -8,6 +8,8 @@ from .config import OPENAI_CHAT_MODEL
 
 logger = logging.getLogger(__name__)
 
+##Consider asking it to determine polarity and/or compound sentiment score...
+###May be useful to employ and test few-shot prompting here. Seems less effective to do zero-shot.
 def analyze_emotion(text: str):
     """Analyze emotion score for given text"""
     try:
@@ -51,6 +53,7 @@ def get_local_timestamp():
     """Get current timestamp in local timezone"""
     return datetime.now().isoformat()
 
+##This is like the short-term check. Would be interesting to play around and check how many days is most efficient. How many days constitute a new cycle of life on average?
 def emotion_trend_endpoint(supabase: Client, user_id: str):
     """Handle emotion trend analysis for the last 7 days"""
     try:

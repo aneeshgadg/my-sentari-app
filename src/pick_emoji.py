@@ -8,6 +8,10 @@ from .config import OPENAI_CHAT_MODEL
 
 logger = logging.getLogger(__name__)
 
+
+##Emojis add fun to the response, but wondering if it's efficient to do it like this or ask at a different stage, like when we generate the insights.
+##Doing it separately may skew the answer away from the original interpretation (that coul be a good thing too, but we must test...)
+##This is another place where I think it could be interesting to test few-shot prompting to enhance results.
 def pick_funky_emoji(transcript: str):
     """Generate a funky emoji based on transcript content"""
     try:
@@ -51,6 +55,7 @@ def get_local_timestamp():
     """Get current timestamp in local timezone"""
     return datetime.now().isoformat()
 
+##Check if this same emoji has been used recently...
 def pick_emoji_endpoint(supabase: Client, user_id: str):
     """Handle emoji generation for entries"""
     try:

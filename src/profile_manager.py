@@ -13,7 +13,7 @@ from .auth import get_user_id_from_request
 # Initialize database
 profiles_db = ProfilesDB()
 
-
+###This is where we should think about initializing empty analytics arrays for the levels of time frames. In other words, 1 day, 7 days, 30 days, 90 days.
 def create_empty_profile(user_id: str) -> Dict:
     """Create a new empty profile for a user"""
     return {
