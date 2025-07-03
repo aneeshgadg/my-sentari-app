@@ -1,0 +1,59 @@
+services:
+  web:
+    build: .
+    ports:
+      - "5000:5000"
+    volumes:
+      - .:/app
+      - /app/venv
+    environment:
+      - ENVIRONMENT=development
+      - FLASK_ENV=development
+      - DATABASE_URL=${SUPABASE_DATABASE_URL}
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_KEY=${SUPABASE_KEY}
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - FLASK_SECRET_KEY=${FLASK_SECRET_KEY:-dev-secret-key}
+      - CORS_ORIGINS=http://localhost:3000,http://localhost:3001,http://localhost:4000,http://127.0.0.1:3000,http://127.0.0.1:4000
+      - RATE_LIMIT_STORAGE_URL=memory://
+      - ENABLE_METRICS=false
+      - LOG_LEVEL=DEBUG
+      - FLASK_DEBUG=true
+    command: python app.py
+    networks:
+      - sentari-dev
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_dev_data:/data
+    command: redis-server --appendonly yes --maxmemory 128mb --maxmemory-policy allkeys-lru
+    networks:
+      - sentari-dev
+    restart: unless-stopped
+
+  # Optional: Add a simple database for local development if needed
+  # postgres-dev:
+  #   image: postgres:15-alpine
+  #   environment:
+  #     POSTGRES_DB: sentari_dev
+  #     POSTGRES_USER: postgres
+  #     POSTGRES_PASSWORD: postgres
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres_dev_data:/var/lib/postgresql/data
+  #   networks:
+  #     - sentari-dev
+  #   restart: unless-stopped
+
+volumes:
+  redis_dev_data:
+  # postgres_dev_data:
+
+networks:
+  sentari-dev:
+    driver: bridge 

@@ -1,0 +1,378 @@
+{
+  "info": {
+    "name": "Sentari API",
+    "description": "API collection for Sentari app local development and testing",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:5000",
+      "type": "string"
+    },
+    {
+      "key": "jwt_token",
+      "value": "your-jwt-token-here",
+      "type": "string"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{jwt_token}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/health",
+          "host": ["{{base_url}}"],
+          "path": ["health"]
+        },
+        "description": "Check if the application is healthy"
+      },
+      "response": []
+    },
+    {
+      "name": "Metrics",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/metrics",
+          "host": ["{{base_url}}"],
+          "path": ["metrics"]
+        },
+        "description": "Get Prometheus metrics (if enabled)"
+      },
+      "response": []
+    },
+    {
+      "name": "Analyze Text",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"text\": \"I am feeling happy today\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/analyze",
+          "host": ["{{base_url}}"],
+          "path": ["api", "analyze"]
+        },
+        "description": "Analyze text sentiment and emotions"
+      },
+      "response": []
+    },
+    {
+      "name": "Save Entry",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"content\": \"Today was a great day at work. I completed all my tasks and felt very productive.\",\n  \"emotion\": \"happy\",\n  \"tags\": [\"work\", \"success\", \"productivity\"]\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/save-entry",
+          "host": ["{{base_url}}"],
+          "path": ["api", "save-entry"]
+        },
+        "description": "Save a journal entry with emotion and tags"
+      },
+      "response": []
+    },
+    {
+      "name": "Emotion Trend",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"start_date\": \"2024-01-01\",\n  \"end_date\": \"2024-01-31\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/emotion-trend",
+          "host": ["{{base_url}}"],
+          "path": ["api", "emotion-trend"]
+        },
+        "description": "Get emotion trends over a date range"
+      },
+      "response": []
+    },
+    {
+      "name": "Pick Emoji",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"text\": \"I am feeling happy today\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/pick-emoji",
+          "host": ["{{base_url}}"],
+          "path": ["api", "pick-emoji"]
+        },
+        "description": "Pick an emoji based on text sentiment"
+      },
+      "response": []
+    },
+    {
+      "name": "Pick Emoji Batch",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "[\n  \"I am feeling happy today\",\n  \"I am feeling sad today\",\n  \"I am feeling excited about the project\"\n]"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/pick-emoji-batch",
+          "host": ["{{base_url}}"],
+          "path": ["api", "pick-emoji-batch"]
+        },
+        "description": "Pick emojis for multiple texts"
+      },
+      "response": []
+    },
+    {
+      "name": "Run Pipeline",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"text\": \"I am feeling happy today\",\n  \"save_entry\": true\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/run",
+          "host": ["{{base_url}}"],
+          "path": ["api", "run"]
+        },
+        "description": "Run the complete analysis pipeline"
+      },
+      "response": []
+    },
+    {
+      "name": "Empathy",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"text\": \"I am feeling sad today\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/empathy",
+          "host": ["{{base_url}}"],
+          "path": ["api", "empathy"]
+        },
+        "description": "Generate empathetic response"
+      },
+      "response": []
+    },
+    {
+      "name": "Update Tags",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"entry_id\": \"123\",\n  \"tags\": [\"work\", \"success\", \"new-tag\"]\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/update-tags",
+          "host": ["{{base_url}}"],
+          "path": ["api", "update-tags"]
+        },
+        "description": "Update tags for an entry"
+      },
+      "response": []
+    },
+    {
+      "name": "Update Transcript",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"entry_id\": \"123\",\n  \"transcript\": \"Updated transcript text\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/update-transcript",
+          "host": ["{{base_url}}"],
+          "path": ["api", "update-transcript"]
+        },
+        "description": "Update transcript for an entry"
+      },
+      "response": []
+    },
+    {
+      "name": "Whisper (Audio Transcription)",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "audio",
+              "type": "file",
+              "src": []
+            }
+          ]
+        },
+        "url": {
+          "raw": "{{base_url}}/api/whisper",
+          "host": ["{{base_url}}"],
+          "path": ["api", "whisper"]
+        },
+        "description": "Transcribe audio file to text"
+      },
+      "response": []
+    },
+    {
+      "name": "Test OpenAI",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/test-openai",
+          "host": ["{{base_url}}"],
+          "path": ["api", "test-openai"]
+        },
+        "description": "Test OpenAI API connection"
+      },
+      "response": []
+    },
+    {
+      "name": "Test Tags",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/test-tags",
+          "host": ["{{base_url}}"],
+          "path": ["api", "test-tags"]
+        },
+        "description": "Test tags functionality"
+      },
+      "response": []
+    },
+    {
+      "name": "Database API - Get Entries",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/entries?user_id=your-user-id",
+          "host": ["{{base_url}}"],
+          "path": ["api", "entries"],
+          "query": [
+            {
+              "key": "user_id",
+              "value": "your-user-id"
+            }
+          ]
+        },
+        "description": "Get user entries"
+      },
+      "response": []
+    },
+    {
+      "name": "Database API - Get Profiles",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/profiles?user_id=your-user-id",
+          "host": ["{{base_url}}"],
+          "path": ["api", "profiles"],
+          "query": [
+            {
+              "key": "user_id",
+              "value": "your-user-id"
+            }
+          ]
+        },
+        "description": "Get user profiles"
+      },
+      "response": []
+    },
+    {
+      "name": "Database API - Get Tags",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/tags?user_id=your-user-id",
+          "host": ["{{base_url}}"],
+          "path": ["api", "tags"],
+          "query": [
+            {
+              "key": "user_id",
+              "value": "your-user-id"
+            }
+          ]
+        },
+        "description": "Get user tags"
+      },
+      "response": []
+    }
+  ]
+} 
