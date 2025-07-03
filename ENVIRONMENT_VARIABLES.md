@@ -29,12 +29,12 @@ This document describes all the environment variables that can be configured for
 ### SUPABASE_URL
 - **Required**: Yes
 - **Description**: Your Supabase project URL
-- **Format**: `https://your-project.supabase.co`
+- **Format**: `https://gfzmmnyhywerfjpnuvdj.supabase.co`
 
 ### SUPABASE_KEY
 - **Required**: Yes
 - **Description**: Your Supabase service role key
-- **Format**: `eyJ...`
+- **Format**: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imdmem1tbnloeXdlcmZqcG51dmRqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTE1NDg2OTksImV4cCI6MjA2NzEyNDY5OX0.70brbyoXBQMyth-7wKrnBW41waN7sC4GQg5D9XRT_6U`
 
 ## Backend-Core Microservice Configuration
 
